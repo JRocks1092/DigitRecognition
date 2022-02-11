@@ -26,8 +26,8 @@ X_test_scaled = X_test/255.0
 #traning maxhine
 clf = LogisticRegression(solver='saga', multi_class='multinomial').fit(X_train_scaled, y_train)
 
-def recogniseNumber():
-    im_pil = Image.open("three.jpg")
+def recogniseNumber(name):
+    im_pil = Image.open(name)
     image_bw = im_pil.convert('L')
     image_bw_resized = image_bw.resize((28,28), Image.ANTIALIAS)
     
@@ -40,4 +40,4 @@ def recogniseNumber():
     image_bw_resized_inverted_scaled = np.asarray(image_bw_resized_inverted_scaled)/max_pixel
     test_sample = np.array(image_bw_resized_inverted_scaled).reshape(1,784)
     res = clf.predict(test_sample)    
-    return res
+    return res[0]
