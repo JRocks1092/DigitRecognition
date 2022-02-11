@@ -6,11 +6,8 @@ app = Flask(__name__)
 @app.route("/getNumber")
 def getNumber():
     res = request.args.get("name")
-    number = recogniseNumber()
-
-    return jsonify({
-        "predicted Number":number
-        }),200
+    number = recogniseNumber(res)    
+    return jsonify({ "predicted Number":number}),200
         
 if __name__ == "__main__": 
     app.run(debug=True)
